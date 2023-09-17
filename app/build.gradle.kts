@@ -9,12 +9,12 @@ plugins {
 
 android {
     namespace = "com.tahir.tahir_assignment"
-    compileSdk = 34
+    compileSdk = 33
 
     defaultConfig {
         applicationId = "com.tahir.tahir_assignment"
         minSdk = 24
-        targetSdk = 34
+        targetSdk = 33
         versionCode = 1
         versionName = "1.0"
 
@@ -49,28 +49,31 @@ dependencies {
     val retrofitVersion = "2.9.0"
     val okhttpVersion = "4.9.1"
     val timberVersion = "5.0.1"
+    val material = "1.9.0"
+    val junit = "4.13.2"
+    val mockk = "1.13.7"
 
     // Standard AndroidX dependencies
-    implementation("androidx.core:core-ktx:1.12.0")
+    implementation("androidx.core:core-ktx:1.10.0")
     implementation("androidx.appcompat:appcompat:1.6.1")
-    implementation("com.google.android.material:material:1.9.0")
+    implementation("com.google.android.material:material:$material")
     implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:2.6.2")
 
     // Kotlin Coroutines for asynchronous programming
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:$kotlinCoroutinesVersion")
     // compose for UI
     implementation("androidx.compose.material3:material3:$composeVersion")
-    implementation("androidx.compose.runtime:runtime-livedata:1.6.0-alpha05")
+    implementation("androidx.compose.runtime:runtime-livedata:1.5.1")
 
     // Unit testing dependencies
-    testImplementation("junit:junit:4.13.2")
-    androidTestImplementation("androidx.test.ext:junit:1.1.5")
+    testImplementation("junit:junit:$junit")
+    androidTestImplementation("androidx.test.ext:junit:$junit")
     androidTestImplementation("androidx.test.espresso:espresso-core:3.5.1")
-    testImplementation("org.jetbrains.kotlinx:kotlinx-coroutines-test:1.5.2")
+    testImplementation("org.jetbrains.kotlinx:kotlinx-coroutines-test:$kotlinCoroutinesVersion")
     testImplementation("androidx.arch.core:core-testing:2.1.0")
 
     // Mocking library for unit testing
-    testImplementation("io.mockk:mockk:1.13.7")
+    testImplementation("io.mockk:mockk:$mockk")
     // Hilt for dependency injection
     implementation("com.google.dagger:hilt-android:$hiltVersion")
     implementation("androidx.hilt:hilt-navigation-compose:1.1.0-alpha01")
