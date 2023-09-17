@@ -9,6 +9,7 @@ import com.tahir.tahir_assignment.network.ResponseResult
 import com.tahir.tahir_assignment.repositories.Repository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.Job
 import kotlinx.coroutines.launch
 import timber.log.Timber
 import javax.inject.Inject
@@ -16,6 +17,7 @@ import javax.inject.Inject
 @HiltViewModel
 class UsersViewModel @Inject constructor(private val repository: Repository) :
     ViewModel() {
+    private var fetchUsersJob: Job? = null
     val isEventLoading = MutableLiveData(false)
     private val _usersLiveData = MutableLiveData<List<User>>()
     val usersLiveData: LiveData<List<User>> get() = _usersLiveData
@@ -25,6 +27,7 @@ class UsersViewModel @Inject constructor(private val repository: Repository) :
     }
 
     fun getAllUsers() {
+        fetchUsersJob?.cancel()
         viewModelScope.launch(Dispatchers.Default) {
             Timber.d("Getting all users...")
             repository.getAllUsers().collect {

@@ -24,7 +24,6 @@ import okio.IOException
  */
 fun <T : Any> Flow<ResponseResult<T>>.applyCommonSideEffects() =
     retryWhen { cause, attempt ->
-        Log.d("###","this is the cause: ${cause.message}")
         when {
             (cause is IOException && attempt < FlowHelper.MAX_RETRIES) -> {
                 delay(FlowHelper.getBackoffDelay(attempt))
